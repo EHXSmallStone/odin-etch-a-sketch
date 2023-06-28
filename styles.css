@@ -1,0 +1,18 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.gridContainer {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  aspect-ratio: 1 / 1;
+  width: 800px;
+}
+
+.square {
+  width: 6.25%;
+  height: 6.25%;
+  border: 1px solid rgba(0, 0, 0, 0.75);
+  flex-shrink: 0;
+}
