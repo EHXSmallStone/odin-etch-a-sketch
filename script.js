@@ -1,7 +1,6 @@
 const grid = document.querySelector('#grid');
-createGrid(16);
 let currentMode = "setBlackMode";
-setMode();
+createGrid(16);
 
 function createGrid(squaresNumber) {
   for(i = 1; i <= squaresNumber * squaresNumber; i++) {
@@ -10,21 +9,18 @@ function createGrid(squaresNumber) {
     square.style.width = `${100 / squaresNumber}%`;
     grid.appendChild(square);
   }
+  setMode();
 };
 
-function clearGrid() {
+const changeGrid = document.querySelector('#changeGrid');
+changeGrid.addEventListener('click', () => {
+  let squaresNumber = recursivePrompt();
+  // clearGrid:
   let squares = document.querySelectorAll('.square');
   for(let square of squares) {
     grid.removeChild(square);
-  }
-};
-
-const btnChangeGrid = document.querySelector('#changeGrid');
-btnChangeGrid.addEventListener('click', () => {
-  let squaresNumber = recursivePrompt();
-  clearGrid();
+  };
   createGrid(squaresNumber);
-  setMode();
 });
 
 const recursivePrompt = () => {
