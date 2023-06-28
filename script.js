@@ -53,3 +53,11 @@ for (let button of setModeButtons) {
     setMode();
   })
 };
+
+const eraseGrid = document.querySelector('#eraseGrid');
+eraseGrid.addEventListener('click', () => {
+  let squares = document.querySelectorAll('.square');
+  for (let square of squares) {
+    square.style.backgroundColor = "white";
+  }
+});
