@@ -1,6 +1,6 @@
 const grid = document.querySelector('#grid');
+const squares = document.getElementsByClassName('square');
 const colorPicker = document.querySelector('#colorPicker');
-
 createGrid(16);
 
 function createGrid(squaresNumber) {
@@ -14,7 +14,6 @@ function createGrid(squaresNumber) {
 };
 
 function setMode() {
-  let squares = document.querySelectorAll('.square');
   for (let square of squares) {
     square.addEventListener('mouseover', () => {
       square.style.backgroundColor = colorPicker.value;
@@ -24,7 +23,6 @@ function setMode() {
 
 const eraseGrid = document.querySelector('#eraseGrid');
 eraseGrid.addEventListener('click', () => {
-  let squares = document.querySelectorAll('.square');
   for (let square of squares) {
     square.style.backgroundColor = "white";
   }
@@ -34,7 +32,6 @@ const changeGrid = document.querySelector('#changeGrid');
 changeGrid.addEventListener('click', () => {
   let squaresNumber = recursivePrompt();
   // clearGrid:
-  let squares = document.querySelectorAll('.square');
   for(let square of squares) {
     grid.removeChild(square);
   };
