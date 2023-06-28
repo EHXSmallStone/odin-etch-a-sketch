@@ -1,17 +1,27 @@
-const gridContainer = document.querySelector('#gridContainer');
+const grid = document.querySelector('#grid');
+createGrid(16);
 
-for(i = 1; i <= 256; i++) {
-  let square = document.createElement('div');
-  square.style.width = "6.25%"
-  square.classList.add('square');
-  gridContainer.appendChild(square);
-}
+function createGrid(squaresNumber) {
+  for(i = 1; i <= squaresNumber * squaresNumber; i++) {
+    let square = document.createElement('div');
+    square.style.width = `${100 / squaresNumber}%`;
+    square.classList.add('square');
+    grid.appendChild(square);
+  }
 
-let squares = document.querySelectorAll('.square');
-for (let square of squares) {
-  square.addEventListener('mouseover', () => {
-    square.style.backgroundColor = 'black';
-  })
+  let squares = document.querySelectorAll('.square');
+  for (let square of squares) {
+    square.addEventListener('mouseover', () => {
+      square.style.backgroundColor = 'black';
+    })
+  };
+};
+
+function clearGrid() {
+  let squares = document.querySelectorAll('.square');
+  for(let square of squares) {
+    grid.removeChild(square);
+  }
 };
 
 const btnChangeGrid = document.querySelector('#changeGrid');
@@ -21,22 +31,6 @@ btnChangeGrid.addEventListener('click', () => {
     alert('It\'s too much! The maximum value is 100')
     return;
   }
-
-  for(let square of squares) {
-    gridContainer.removeChild(square);
-  }
-
-  for(i = 1; i <= answer * answer; i++) {
-    let square = document.createElement('div');
-    square.style.width = `${100 / answer}%`;
-    square.classList.add('square');
-    gridContainer.appendChild(square);
-  }
-
-  squares = document.querySelectorAll('.square');
-  for (let square of squares) {
-    square.addEventListener('mouseover', () => {
-      square.style.backgroundColor = 'black';
-    })
-  };
+  clearGrid();
+  createGrid(answer);
 });

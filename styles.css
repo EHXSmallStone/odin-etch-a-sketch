@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-#gridContainer {
+#grid {
   margin: 1em auto;
   display: flex;
   flex-wrap: wrap;
