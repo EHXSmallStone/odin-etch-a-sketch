@@ -28,6 +28,9 @@ const recursivePrompt = () => {
   if (answer > 100) {
     alert('It\'s too much! The maximum value is 100');
     return recursivePrompt();
+  } else if (answer < 1) {
+    alert('That is very little! At least it must be 1');
+    return recursivePrompt();
   } else {
     return answer;
   }
