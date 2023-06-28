@@ -1,20 +1,15 @@
 const grid = document.querySelector('#grid');
 createGrid(16);
+let currentMode = "setBlackMode";
+setMode();
 
 function createGrid(squaresNumber) {
   for(i = 1; i <= squaresNumber * squaresNumber; i++) {
     let square = document.createElement('div');
-    square.style.width = `${100 / squaresNumber}%`;
     square.classList.add('square');
+    square.style.width = `${100 / squaresNumber}%`;
     grid.appendChild(square);
   }
-
-  let squares = document.querySelectorAll('.square');
-  for (let square of squares) {
-    square.addEventListener('mouseover', () => {
-      square.style.backgroundColor = 'black';
-    })
-  };
 };
 
 function clearGrid() {
@@ -29,6 +24,7 @@ btnChangeGrid.addEventListener('click', () => {
   let squaresNumber = recursivePrompt();
   clearGrid();
   createGrid(squaresNumber);
+  setMode();
 });
 
 const recursivePrompt = () => {
@@ -39,4 +35,25 @@ const recursivePrompt = () => {
   } else {
     return answer;
   }
+};
+
+function setMode() {
+  let squares = document.querySelectorAll('.square');
+  for (let square of squares) {
+    square.addEventListener('mouseover', () => {
+      if (currentMode === 'setBlackMode') {
+        square.style.backgroundColor = 'black';
+      } else if (currentMode === 'setBlueMode') {
+        square.style.backgroundColor = 'blue';
+      }
+    })
+  };
+}
+
+const setModeButtons = document.querySelectorAll('.setMode');
+for (let button of setModeButtons) {
+  button.addEventListener('click', (e) => {
+    currentMode = e.target.id;
+    setMode();
+  })
 };
