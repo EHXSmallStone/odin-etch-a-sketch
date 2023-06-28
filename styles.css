@@ -2,8 +2,8 @@
   box-sizing: border-box;
 }
 
-.gridContainer {
-  margin: auto;
+#gridContainer {
+  margin: 1em auto;
   display: flex;
   flex-wrap: wrap;
   aspect-ratio: 1 / 1;
@@ -11,8 +11,12 @@
 }
 
 .square {
-  width: 6.25%;
-  height: 6.25%;
+  aspect-ratio: 1 / 1;
   border: 1px solid rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
+}
+
+button[id="changeGrid"] {
+  display: block;
+  margin: 1em auto;
 }
