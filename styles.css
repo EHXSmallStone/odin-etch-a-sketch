@@ -13,6 +13,6 @@
 .square {
   width: 6.25%;
   height: 6.25%;
-  border: 1px solid rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
 }
