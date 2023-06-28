@@ -26,11 +26,17 @@ function clearGrid() {
 
 const btnChangeGrid = document.querySelector('#changeGrid');
 btnChangeGrid.addEventListener('click', () => {
+  let squaresNumber = recursivePrompt();
+  clearGrid();
+  createGrid(squaresNumber);
+});
+
+const recursivePrompt = () => {
   let answer = +prompt('Enter the number of squares per side for the grid', '16');
   if (answer > 100) {
-    alert('It\'s too much! The maximum value is 100')
-    return;
+    alert('It\'s too much! The maximum value is 100');
+    return recursivePrompt();
+  } else {
+    return answer;
   }
-  clearGrid();
-  createGrid(answer);
-});
+};
