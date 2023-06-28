@@ -11,25 +11,27 @@ body {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   aspect-ratio: 1 / 1;
   width: 800px;
-  background-color: red;
+  background-color: rgb(50, 50, 50);
   padding: 1em;
 }
 
 .square {
   aspect-ratio: 1 / 1;
-  border: 1px solid rgba(0, 0, 0, 0.05);
   flex-shrink: 0;
   background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 #options {
-  background-color: cornflowerblue;
+  background-color: rgb(50, 50, 50);
+  color: white;
   padding: 1em;
 }
 
-#options button {
+#options > * {
   display: block;
   margin-bottom: 0.5em;
 }
