@@ -33,6 +33,7 @@ eraseGrid.addEventListener('click', () => {
 const changeGrid = document.querySelector('#changeGrid');
 changeGrid.addEventListener('click', () => {
   let squaresPerSide = recursivePrompt();
+  if (!squaresPerSide) return;
   while (grid.lastChild) {
     grid.lastChild.remove()
   };
@@ -40,14 +41,16 @@ changeGrid.addEventListener('click', () => {
 });
 
 const recursivePrompt = () => {
-  let answer = +prompt('Enter the number of squares per side for the grid', '16');
-  if (answer > 100) {
+  let answer = prompt('Enter the number of squares per side for the grid', '16');
+  if (answer === null) {
+    return null;
+  } else if (+answer > 100) {
     alert('It\'s too much! The maximum value is 100');
     return recursivePrompt();
-  } else if (answer < 1) {
-    alert('That is very little! At least it must be 1');
+  } else if (+answer < 3) {
+    alert('That is very little! At least it must be 3');
     return recursivePrompt();
   } else {
-    return answer;
+    return +answer;
   }
 };
