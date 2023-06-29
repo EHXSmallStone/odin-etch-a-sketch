@@ -31,9 +31,8 @@ eraseGrid.addEventListener('click', () => {
 const changeGrid = document.querySelector('#changeGrid');
 changeGrid.addEventListener('click', () => {
   let squaresNumber = recursivePrompt();
-  // clearGrid:
-  for(let square of squares) {
-    grid.removeChild(square);
+  while (grid.lastChild) {
+    grid.lastChild.remove()
   };
   createGrid(squaresNumber);
 });
