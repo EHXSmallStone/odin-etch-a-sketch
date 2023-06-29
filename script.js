@@ -44,13 +44,13 @@ const recursivePrompt = () => {
   let answer = prompt('Enter the number of squares per side for the grid', '16');
   if (answer === null) {
     return null;
-  } else if (+answer > 100) {
+  } else if (answer > 100) {
     alert('It\'s too much! The maximum value is 100');
     return recursivePrompt();
-  } else if (+answer < 3) {
+  } else if (answer < 3) {
     alert('That is very little! At least it must be 3');
     return recursivePrompt();
   } else {
-    return +answer;
+    return answer;
   }
 };
