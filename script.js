@@ -71,3 +71,17 @@ colorPicker.addEventListener('change', (e) => {
     currentColors.push(e.target.value);
   }
 });
+
+// setMode: Se creara una variable currentMode = "colorPicker" y a partir de esta variable
+// se debe aplicar X modo. Cuando se seleccione un modo con un boton, el evento click cambiara 
+// la variable y llamara a setMode() para aplicar el modo.
+// RECORDAR eliminar los eventos antes de aplicar los nuevos (removeEvent...);
+
+// "En lugar de un simple cambio de color de negro a blanco, cada interacción debe aleatorizar
+// completamente el valor RGB del cuadrado"
+
+function getRandomColor() {
+  let getRandomNumber = () => Math.floor(Math.random() * 256);
+  let color = `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
+  return color;
+};
