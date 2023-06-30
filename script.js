@@ -54,3 +54,20 @@ const recursivePrompt = () => {
     return answer;
   }
 };
+
+const colorPalette = document.querySelector('#colorPalette');
+
+let currentColors = [];
+for (let color of colorPalette.children) {
+  currentColors.push(color.value);
+};
+
+colorPicker.addEventListener('change', (e) => {
+// IF the new color does not exist in the color palette, it is added to the color palette.
+  if (currentColors.indexOf(e.target.value) === -1) {
+    let option = document.createElement('option');
+    option.value = e.target.value;
+    colorPalette.appendChild(option);
+    currentColors.push(e.target.value);
+  }
+});

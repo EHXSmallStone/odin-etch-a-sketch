@@ -9,8 +9,11 @@
   <body>
     <div id="options">
       <label for="colorPicker">Color Picker:</label>
-      <input id="colorPicker" type="color" value="#000000" list="palette">
-      <datalist id="palette">
+      <input id="colorPicker" type="color" value="#000000" list="colorPalette">
+      <datalist id="colorPalette">
+        <option value="#000000"></option>
+        <option value="#808080"></option>
+        <option value="#ffffff"></option>
         <option value="#ff0000"></option>
         <option value="#ff8000"></option>
         <option value="#ffff00"></option>
@@ -23,9 +26,6 @@
         <option value="#7f00ff"></option>
         <option value="#ff00ff"></option>
         <option value="#ff007f"></option>
-        <option value="#ffffff"></option>
-        <option value="#808080"></option>
-        <option value="#000000"></option>
       </datalist>
       <button id="eraseGrid">Erase</button>
       <button id="changeGrid">Change grid</button>
