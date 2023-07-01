@@ -31,7 +31,16 @@
       <button id="modeRandomColor">Set Random Color mode</button>
       <button id="modeDarkeningEffect">Set Darkening effect mode</button>
       <button id="eraseGrid">Erase</button>
-      <button id="changeGrid">Change grid</button>
+      <label for="changeGrid">Grid size</label>
+      <input id="changeGrid" type="range" min="1" value="16" list="gridSizeMarkers">
+      <datalist id="gridSizeMarkers">
+        <option value="16"></option>
+        <option value="32"></option>
+        <option value="48"></option>
+        <option value="64"></option>
+        <option value="80"></option>
+      </datalist>
+      <div id="showGridSize">16 x 16</div>
     </div>
     <div id="grid"></div>
   </body>

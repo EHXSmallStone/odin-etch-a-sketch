@@ -45,29 +45,18 @@ eraseGrid.addEventListener('click', () => {
 });
 
 const changeGrid = document.querySelector('#changeGrid');
-changeGrid.addEventListener('click', () => {
-  let squaresPerSide = recursivePrompt();
-  if (!squaresPerSide) return;
+changeGrid.addEventListener('click', e => {
+  let squaresPerSide = e.target.value;
   while (grid.lastChild) {
     grid.lastChild.remove()
   };
   createGrid(squaresPerSide);
 });
 
-const recursivePrompt = () => {
-  let answer = prompt('Enter the number of squares per side for the grid', '16');
-  if (answer === null) {
-    return null;
-  } else if (answer > 100) {
-    alert('It\'s too much! The maximum value is 100');
-    return recursivePrompt();
-  } else if (answer < 3) {
-    alert('That is very little! At least it must be 3');
-    return recursivePrompt();
-  } else {
-    return answer;
-  }
-};
+const showGridSize = document.querySelector('#showGridSize');
+changeGrid.addEventListener('input', e => {
+  showGridSize.textContent = `${e.target.value} x ${e.target.value}`;
+});
 
 const colorPalette = document.querySelector('#colorPalette');
 
