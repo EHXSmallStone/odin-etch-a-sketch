@@ -14,26 +14,26 @@ function createGrid(squaresPerSide) {
     square.style.width = widthOfSquare;
     grid.appendChild(square);
   }
-  setMode();
+  addEvents();
 };
 
-function setMode() {
+function addEvents() {
   for (let square of squares) {
-    square.addEventListener('mouseover', (e) => {
-      switch (currentMode) {
-        case 'colorPicker':
-          console.log('colorpicker mode'); // ONLY FOR DEBUGGING!
-          square.style.backgroundColor = colorPicker.value;
-          break;
-        case 'randomColor':
-          console.log('RANDOM COLOR mode'); // ONLY FOR DEBUGGING!
-          square.style.backgroundColor = getRandomColor();
-          break;
-        case 'darkeningEffect':
-          console.log('Darkening effect ON'); // ONLY FOR DEBUGGING!
-          square.style.backgroundColor = getDarkeningEffect(e);
-      }
-    })
+    square.removeEventListener('mouseover', setMode);
+    square.addEventListener('mouseover', setMode);
+  }
+};
+
+function setMode(e) {
+  switch (currentMode) {
+    case 'colorPicker':
+      e.target.style.backgroundColor = colorPicker.value;
+      break;
+    case 'randomColor':
+      e.target.style.backgroundColor = getRandomColor();
+      break;
+    case 'darkeningEffect':
+      e.target.style.backgroundColor = getDarkeningEffect(e);
   }
 };
 
@@ -97,7 +97,7 @@ const btnColorPicker = document.querySelector('#modeColorPicker');
 btnColorPicker.addEventListener('click', () => {
   if (currentMode !== 'colorPicker') {
     currentMode = 'colorPicker';
-    setMode();
+    addEvents();
   }
 });
 
@@ -105,7 +105,7 @@ const btnRandomColor = document.querySelector('#modeRandomColor');
 btnRandomColor.addEventListener('click', () => {
   if (currentMode !== 'randomColor') {
     currentMode = 'randomColor';
-    setMode();
+    addEvents();
   }
 });
 
@@ -113,7 +113,7 @@ const btnDarkeningEffect = document.querySelector('#modeDarkeningEffect');
 btnDarkeningEffect.addEventListener('click', () => {
   if (currentMode !== 'darkeningEffect') {
     currentMode = 'darkeningEffect';
-    setMode();
+    addEvents();
   }
 });
 
@@ -121,14 +121,12 @@ btnDarkeningEffect.addEventListener('click', () => {
 function getDarkeningEffect(e) {
   let detectedColor = e.target.style.backgroundColor;
   if (detectedColor && detectedColor !== 'rgb(0, 0, 0)') {
-    console.log("detected color: " + detectedColor); // ONLY FOR DEBUGGING!
     let regExp = /\d{1,3}/g;
     let rgbValues = detectedColor.match(regExp);
     let subtractedValues = rgbValues.map(value => {
       return value - 10;
     })
     let result = `rgb(${subtractedValues[0]}, ${subtractedValues[1]}, ${subtractedValues[2]})`;
-    console.log("result: " + result); // ONLY FOR DEBUGGING!
     return result;
   }
 };
