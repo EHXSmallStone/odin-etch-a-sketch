@@ -58,6 +58,16 @@ changeGrid.addEventListener('input', e => {
   showGridSize.textContent = `${e.target.value} x ${e.target.value}`;
 });
 
+const gridMeshOpacity = document.querySelector('#gridMeshOpacity');
+const showGridMeshOpacity = document.querySelector('#showGridMeshOpacity');
+gridMeshOpacity.addEventListener('input', e => {
+  let opacityValue = e.target.value / 100;
+  showGridMeshOpacity.textContent = opacityValue;
+  for (let square of squares) {
+    square.style.border = `1px solid rgba(0, 0, 0, ${opacityValue})`;
+  }
+});
+
 const colorPalette = document.querySelector('#colorPalette');
 
 let currentColors = [];
