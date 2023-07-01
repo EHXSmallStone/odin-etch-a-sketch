@@ -2,7 +2,6 @@ const grid = document.querySelector('#grid');
 const squares = document.getElementsByClassName('square');
 const colorPicker = document.querySelector('#colorPicker');
 let currentMode = 'colorPicker';
-createGrid(16);
 
 function createGrid(squaresPerSide) {
   let totalSquares = squaresPerSide * squaresPerSide;
@@ -10,8 +9,9 @@ function createGrid(squaresPerSide) {
   for(i = 1; i <= totalSquares; i++) {
     let square = document.createElement('div');
     square.classList.add('square');
-    square.style.backgroundColor = '#ffffff';
     square.style.width = widthOfSquare;
+    square.style.backgroundColor = '#ffffff';
+    square.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
     grid.appendChild(square);
   }
   addEvents();
@@ -129,3 +129,5 @@ function getDarkeningEffect(e) {
     return result;
   }
 };
+
+createGrid(16);
