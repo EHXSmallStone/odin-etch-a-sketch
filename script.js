@@ -33,6 +33,10 @@ function setMode(e) {
       break;
     case 'darkeningEffect':
       e.target.style.backgroundColor = getDarkeningEffect(e);
+      break;
+    case 'brighteningEffect':
+      e.target.style.backgroundColor = getBrighteningEffect(e);
+      break;
   }
 };
 
@@ -101,15 +105,13 @@ btnRandomColor.addEventListener('click', () => {
   }
 });
 
+let rgbRegExp = /\d{1,3}/g;
 function getDarkeningEffect(e) {
   let detectedColor = e.target.style.backgroundColor;
   if (detectedColor && detectedColor !== 'rgb(0, 0, 0)') {
-    let regExp = /\d{1,3}/g;
-    let rgbValues = detectedColor.match(regExp);
-    let subtractedValues = rgbValues.map(value => {
-      return value - 10;
-      // Softer darkening. For subtract 10% per iteration is -25.5
-    })
+    let rgbValues = detectedColor.match(rgbRegExp);
+    let subtractedValues = rgbValues.map(value => value - 10);
+    // Softer darkening. For subtract 10% per iteration is -25.5
     let result = `rgb(${subtractedValues[0]}, ${subtractedValues[1]}, ${subtractedValues[2]})`;
     return result;
   }
@@ -122,6 +124,24 @@ btnDarkeningEffect.addEventListener('click', () => {
     addEvents();
   }
 });
+
+function getBrighteningEffect(e) {
+  let detectedColor = e.target.style.backgroundColor;
+  if (detectedColor && detectedColor !== 'rgb(255, 255, 255)') {
+    let rgbValues = detectedColor.match(rgbRegExp);
+    let subtractedValues = rgbValues.map(value => +value + 10);
+    let result = `rgb(${subtractedValues[0]}, ${subtractedValues[1]}, ${subtractedValues[2]})`;
+    return result;
+  }
+};
+
+const btnBrighteningEffect = document.querySelector('#modeBrighteningEffect');
+btnBrighteningEffect.addEventListener('click', () => {
+  if (currentMode !== 'brighteningEffect') {
+    currentMode = 'brighteningEffect';
+    addEvents();
+  }
+})
 
 const eraseGrid = document.querySelector('#eraseGrid');
 eraseGrid.addEventListener('click', () => {
