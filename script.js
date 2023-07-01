@@ -1,7 +1,5 @@
 const grid = document.querySelector('#grid');
 const squares = document.getElementsByClassName('square');
-const colorPicker = document.querySelector('#colorPicker');
-let currentMode = 'colorPicker';
 
 function createGrid(squaresPerSide) {
   let totalSquares = squaresPerSide * squaresPerSide;
@@ -24,6 +22,7 @@ function addEvents() {
   }
 };
 
+let currentMode = 'colorPicker';
 function setMode(e) {
   switch (currentMode) {
     case 'colorPicker':
@@ -36,13 +35,6 @@ function setMode(e) {
       e.target.style.backgroundColor = getDarkeningEffect(e);
   }
 };
-
-const eraseGrid = document.querySelector('#eraseGrid');
-eraseGrid.addEventListener('click', () => {
-  for (let square of squares) {
-    square.style.backgroundColor = '#ffffff';
-  }
-});
 
 const changeGrid = document.querySelector('#changeGrid');
 changeGrid.addEventListener('click', e => {
@@ -68,6 +60,7 @@ gridMeshOpacity.addEventListener('input', e => {
   }
 });
 
+const colorPicker = document.querySelector('#colorPicker');
 const colorPalette = document.querySelector('#colorPalette');
 
 let currentColors = [];
@@ -76,7 +69,7 @@ for (let color of colorPalette.children) {
 };
 
 colorPicker.addEventListener('change', (e) => {
-// IF the new color does not exist in the color palette, it is added to the color palette.
+  // IF the new color does not exist in the color palette, it is added to the color palette.
   if (currentColors.indexOf(e.target.value) === -1) {
     let option = document.createElement('option');
     option.value = e.target.value;
@@ -86,12 +79,6 @@ colorPicker.addEventListener('change', (e) => {
   btnColorPicker.style.backgroundColor = colorPicker.value;
 });
 
-function getRandomColor() {
-  let getRandomNumber = () => Math.floor(Math.random() * 256);
-  let color = `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
-  return color;
-};
-
 const btnColorPicker = document.querySelector('#modeColorPicker');
 btnColorPicker.addEventListener('click', () => {
   if (currentMode !== 'colorPicker') {
@@ -99,6 +86,12 @@ btnColorPicker.addEventListener('click', () => {
     addEvents();
   }
 });
+
+function getRandomColor() {
+  let getRandomNumber = () => Math.floor(Math.random() * 256);
+  let color = `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
+  return color;
+};
 
 const btnRandomColor = document.querySelector('#modeRandomColor');
 btnRandomColor.addEventListener('click', () => {
@@ -108,6 +101,20 @@ btnRandomColor.addEventListener('click', () => {
   }
 });
 
+function getDarkeningEffect(e) {
+  let detectedColor = e.target.style.backgroundColor;
+  if (detectedColor && detectedColor !== 'rgb(0, 0, 0)') {
+    let regExp = /\d{1,3}/g;
+    let rgbValues = detectedColor.match(regExp);
+    let subtractedValues = rgbValues.map(value => {
+      return value - 10;
+      // Softer darkening. For subtract 10% per iteration is -25.5
+    })
+    let result = `rgb(${subtractedValues[0]}, ${subtractedValues[1]}, ${subtractedValues[2]})`;
+    return result;
+  }
+};
+
 const btnDarkeningEffect = document.querySelector('#modeDarkeningEffect');
 btnDarkeningEffect.addEventListener('click', () => {
   if (currentMode !== 'darkeningEffect') {
@@ -116,18 +123,11 @@ btnDarkeningEffect.addEventListener('click', () => {
   }
 });
 
-// Softer darkening. For subtract 10% per iteration is -25.5
-function getDarkeningEffect(e) {
-  let detectedColor = e.target.style.backgroundColor;
-  if (detectedColor && detectedColor !== 'rgb(0, 0, 0)') {
-    let regExp = /\d{1,3}/g;
-    let rgbValues = detectedColor.match(regExp);
-    let subtractedValues = rgbValues.map(value => {
-      return value - 10;
-    })
-    let result = `rgb(${subtractedValues[0]}, ${subtractedValues[1]}, ${subtractedValues[2]})`;
-    return result;
+const eraseGrid = document.querySelector('#eraseGrid');
+eraseGrid.addEventListener('click', () => {
+  for (let square of squares) {
+    square.style.backgroundColor = '#ffffff';
   }
-};
+});
 
 createGrid(16);
