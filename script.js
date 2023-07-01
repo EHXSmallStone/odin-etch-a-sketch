@@ -10,6 +10,7 @@ function createGrid(squaresPerSide) {
   for(i = 1; i <= totalSquares; i++) {
     let square = document.createElement('div');
     square.classList.add('square');
+    square.style.backgroundColor = '#ffffff';
     square.style.width = widthOfSquare;
     grid.appendChild(square);
   }
@@ -18,14 +19,19 @@ function createGrid(squaresPerSide) {
 
 function setMode() {
   for (let square of squares) {
-    square.addEventListener('mouseover', () => {
+    square.addEventListener('mouseover', (e) => {
       switch (currentMode) {
         case 'colorPicker':
+          console.log('colorpicker mode'); // ONLY FOR DEBUGGING!
           square.style.backgroundColor = colorPicker.value;
           break;
         case 'randomColor':
+          console.log('RANDOM COLOR mode'); // ONLY FOR DEBUGGING!
           square.style.backgroundColor = getRandomColor();
           break;
+        case 'darkeningEffect':
+          console.log('Darkening effect ON'); // ONLY FOR DEBUGGING!
+          square.style.backgroundColor = getDarkeningEffect(e);
       }
     })
   }
@@ -89,12 +95,40 @@ function getRandomColor() {
 
 const btnColorPicker = document.querySelector('#modeColorPicker');
 btnColorPicker.addEventListener('click', () => {
-  currentMode = 'colorPicker';
-  setMode();
+  if (currentMode !== 'colorPicker') {
+    currentMode = 'colorPicker';
+    setMode();
+  }
 });
 
 const btnRandomColor = document.querySelector('#modeRandomColor');
 btnRandomColor.addEventListener('click', () => {
-  currentMode = 'randomColor';
-  setMode();
+  if (currentMode !== 'randomColor') {
+    currentMode = 'randomColor';
+    setMode();
+  }
 });
+
+const btnDarkeningEffect = document.querySelector('#modeDarkeningEffect');
+btnDarkeningEffect.addEventListener('click', () => {
+  if (currentMode !== 'darkeningEffect') {
+    currentMode = 'darkeningEffect';
+    setMode();
+  }
+});
+
+// Softer darkening. For subtract 10% per iteration is -25.5
+function getDarkeningEffect(e) {
+  let detectedColor = e.target.style.backgroundColor;
+  if (detectedColor && detectedColor !== 'rgb(0, 0, 0)') {
+    console.log("detected color: " + detectedColor); // ONLY FOR DEBUGGING!
+    let regExp = /\d{1,3}/g;
+    let rgbValues = detectedColor.match(regExp);
+    let subtractedValues = rgbValues.map(value => {
+      return value - 10;
+    })
+    let result = `rgb(${subtractedValues[0]}, ${subtractedValues[1]}, ${subtractedValues[2]})`;
+    console.log("result: " + result); // ONLY FOR DEBUGGING!
+    return result;
+  }
+};
