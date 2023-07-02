@@ -9,24 +9,24 @@
   <body>
     <div id="options">
       <label for="colorPicker">Color Picker:</label>
-      <input id="colorPicker" type="color" value="#000000" list="colorPalette">
-      <datalist id="colorPalette">
-        <option value="#000000"></option>
-        <option value="#808080"></option>
-        <option value="#ffffff"></option>
-        <option value="#ff0000"></option>
-        <option value="#ff8000"></option>
-        <option value="#ffff00"></option>
-        <option value="#80ff00"></option>
-        <option value="#00ff00"></option>
-        <option value="#00ff80"></option>
-        <option value="#00ffff"></option>
-        <option value="#0080ff"></option>
-        <option value="#0000ff"></option>
-        <option value="#7f00ff"></option>
-        <option value="#ff00ff"></option>
-        <option value="#ff007f"></option>
-      </datalist>
+      <input id="colorPicker" type="color" value="#000000">
+      <div id="colorPaletteContainer">
+        <input class="paletteColor" type="button" value="#000000"></input>
+        <input class="paletteColor" type="button" value="#808080"></input>
+        <input class="paletteColor" type="button" value="#ffffff"></input>
+        <input class="paletteColor" type="button" value="#ff0000"></input>
+        <input class="paletteColor" type="button" value="#ff8000"></input>
+        <input class="paletteColor" type="button" value="#ffff00"></input>
+        <input class="paletteColor" type="button" value="#80ff00"></input>
+        <input class="paletteColor" type="button" value="#00ff00"></input>
+        <input class="paletteColor" type="button" value="#00ff80"></input>
+        <input class="paletteColor" type="button" value="#00ffff"></input>
+        <input class="paletteColor" type="button" value="#0080ff"></input>
+        <input class="paletteColor" type="button" value="#0000ff"></input>
+        <input class="paletteColor" type="button" value="#7f00ff"></input>
+        <input class="paletteColor" type="button" value="#ff00ff"></input>
+        <input class="paletteColor" type="button" value="#ff007f"></input>
+      </div>
       <button id="modeColorPicker">Set Color Picker mode</button>
       <button id="modeRandomColor">Set Random Color mode</button>
       <button id="modeDarkeningEffect">Set Darkening effect mode</button>

@@ -65,22 +65,31 @@ gridMeshOpacity.addEventListener('input', e => {
 });
 
 const colorPicker = document.querySelector('#colorPicker');
-const colorPalette = document.querySelector('#colorPalette');
 
+const paletteColors = document.getElementsByClassName('paletteColor');
 let currentColors = [];
-for (let color of colorPalette.children) {
+for (let color of paletteColors) {
+  color.style.backgroundColor = color.value;
+  color.addEventListener('click', e => {
+    colorPicker.value = e.target.value;
+  })
   currentColors.push(color.value);
 };
 
-colorPicker.addEventListener('change', (e) => {
+colorPicker.addEventListener('change', e => {
   // IF the new color does not exist in the color palette, it is added to the color palette.
   if (currentColors.indexOf(e.target.value) === -1) {
-    let option = document.createElement('option');
-    option.value = e.target.value;
-    colorPalette.appendChild(option);
+    let input = document.createElement('input');
+    input.classList.add('paletteColor');
+    input.type = 'button';
+    input.value = e.target.value;
+    input.style.backgroundColor = e.target.value;
+    input.addEventListener('click', e => {
+      colorPicker.value = e.target.value;
+    });
+    document.querySelector('#colorPaletteContainer').appendChild(input);
     currentColors.push(e.target.value);
   }
-  btnColorPicker.style.backgroundColor = colorPicker.value;
 });
 
 const btnColorPicker = document.querySelector('#modeColorPicker');
