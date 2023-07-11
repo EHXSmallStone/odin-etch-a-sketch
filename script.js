@@ -45,13 +45,13 @@ changeGrid.addEventListener('click', (e) => {
   createGrid(squaresPerSide);
 });
 
-const showGridSize = document.querySelector('#showGridSize');
+const showGridSize = document.querySelector('output[for="changeGrid"]');
 changeGrid.addEventListener('input', (e) => {
   showGridSize.textContent = `${e.target.value} x ${e.target.value}`;
 });
 
 const gridMeshOpacity = document.querySelector('#gridMeshOpacity');
-const showGridMeshOpacity = document.querySelector('#showGridMeshOpacity');
+const showGridMeshOpacity = document.querySelector('output[for="gridMeshOpacity"]');
 gridMeshOpacity.addEventListener('input', (e) => {
   let opacityValue = e.target.value / 100;
   showGridMeshOpacity.textContent = opacityValue;

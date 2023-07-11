@@ -24,6 +24,7 @@ body {
   width: 800px;
   background-color: rgb(50, 50, 50);
   padding: 1em;
+  cursor: crosshair;
 }
 
 .square {
@@ -71,4 +72,8 @@ button {
   rgba(0,255,255,1) 60%,
   rgba(0,0,255,1) 80%,
   rgba(255,0,255,1) 100%);
+}
+
+output {
+  display: block;
 }
