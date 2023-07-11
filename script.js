@@ -58,26 +58,26 @@ gridMeshOpacity.addEventListener('input', e => {
 });
 
 const colorPicker = document.querySelector('#colorPicker');
-
-const paletteColors = document.getElementsByClassName('paletteColor');
-let currentColors = [];
+const paletteColors = document.querySelectorAll('.paletteColor');
+const currentColors = [];
+// Add background colors and events to default colors:
 for (let color of paletteColors) {
   color.style.backgroundColor = color.value;
-  color.addEventListener('click', e => {
+  color.addEventListener('click', (e) => {
     colorPicker.value = e.target.value;
   })
   currentColors.push(color.value);
 };
 
-colorPicker.addEventListener('change', e => {
-  // IF the new color does not exist in the color palette, it is added to the color palette.
-  if (currentColors.indexOf(e.target.value) === -1) {
+colorPicker.addEventListener('change', (e) => {
+  // IF the new color does not exist in the color palette, it is added to the color palette:
+  if (!currentColors.includes(e.target.value)) {
     let input = document.createElement('input');
     input.classList.add('paletteColor');
     input.type = 'button';
     input.value = e.target.value;
     input.style.backgroundColor = e.target.value;
-    input.addEventListener('click', e => {
+    input.addEventListener('click', (e) => {
       colorPicker.value = e.target.value;
     });
     document.querySelector('#colorPaletteContainer').appendChild(input);
