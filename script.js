@@ -10,15 +10,8 @@ function createGrid(squaresPerSide) {
     square.style.width = widthOfSquare;
     square.style.backgroundColor = '#ffffff';
     square.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
-    grid.appendChild(square);
-  }
-  addEvents();
-};
-
-function addEvents() {
-  for (let square of squares) {
-    square.removeEventListener('mouseover', setMode);
     square.addEventListener('mouseover', setMode);
+    grid.appendChild(square);
   }
 };
 
@@ -94,10 +87,7 @@ colorPicker.addEventListener('change', e => {
 
 const btnColorPicker = document.querySelector('#modeColorPicker');
 btnColorPicker.addEventListener('click', () => {
-  if (currentMode !== 'colorPicker') {
-    currentMode = 'colorPicker';
-    addEvents();
-  }
+  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
 });
 
 function getRandomColor() {
@@ -108,10 +98,7 @@ function getRandomColor() {
 
 const btnRandomColor = document.querySelector('#modeRandomColor');
 btnRandomColor.addEventListener('click', () => {
-  if (currentMode !== 'randomColor') {
-    currentMode = 'randomColor';
-    addEvents();
-  }
+  if (currentMode !== 'randomColor') currentMode = 'randomColor';
 });
 
 let rgbRegExp = /\d{1,3}/g;
@@ -128,10 +115,7 @@ function getDarkeningEffect(e) {
 
 const btnDarkeningEffect = document.querySelector('#modeDarkeningEffect');
 btnDarkeningEffect.addEventListener('click', () => {
-  if (currentMode !== 'darkeningEffect') {
-    currentMode = 'darkeningEffect';
-    addEvents();
-  }
+  if (currentMode !== 'darkeningEffect') currentMode = 'darkeningEffect';
 });
 
 function getBrighteningEffect(e) {
@@ -146,10 +130,7 @@ function getBrighteningEffect(e) {
 
 const btnBrighteningEffect = document.querySelector('#modeBrighteningEffect');
 btnBrighteningEffect.addEventListener('click', () => {
-  if (currentMode !== 'brighteningEffect') {
-    currentMode = 'brighteningEffect';
-    addEvents();
-  }
+  if (currentMode !== 'brighteningEffect') currentMode = 'brighteningEffect';
 })
 
 const eraseGrid = document.querySelector('#eraseGrid');
