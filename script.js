@@ -34,7 +34,10 @@ function setMode(e) {
 };
 
 const changeGrid = document.querySelector('#changeGrid');
-changeGrid.addEventListener('click', e => {
+changeGrid.addEventListener('click', (e) => {
+// IF the square root of the number of total squares is equal to e.target.value, make no change.
+// e.g. √256 (total squares) = 16 (e.target.value)
+  if (Math.sqrt(squares.length) == e.target.value) return;
   let squaresPerSide = e.target.value;
   while (grid.lastChild) {
     grid.lastChild.remove()
@@ -43,13 +46,13 @@ changeGrid.addEventListener('click', e => {
 });
 
 const showGridSize = document.querySelector('#showGridSize');
-changeGrid.addEventListener('input', e => {
+changeGrid.addEventListener('input', (e) => {
   showGridSize.textContent = `${e.target.value} x ${e.target.value}`;
 });
 
 const gridMeshOpacity = document.querySelector('#gridMeshOpacity');
 const showGridMeshOpacity = document.querySelector('#showGridMeshOpacity');
-gridMeshOpacity.addEventListener('input', e => {
+gridMeshOpacity.addEventListener('input', (e) => {
   let opacityValue = e.target.value / 100;
   showGridMeshOpacity.textContent = opacityValue;
   for (let square of squares) {
