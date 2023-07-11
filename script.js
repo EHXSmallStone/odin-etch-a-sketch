@@ -63,9 +63,7 @@ const currentColors = [];
 // Add background colors and events to default colors:
 for (let color of paletteColors) {
   color.style.backgroundColor = color.value;
-  color.addEventListener('click', (e) => {
-    colorPicker.value = e.target.value;
-  })
+  color.addEventListener('click', selectColor);
   currentColors.push(color.value);
 };
 
@@ -77,13 +75,17 @@ colorPicker.addEventListener('change', (e) => {
     input.type = 'button';
     input.value = e.target.value;
     input.style.backgroundColor = e.target.value;
-    input.addEventListener('click', (e) => {
-      colorPicker.value = e.target.value;
-    });
+    input.addEventListener('click', selectColor);
     document.querySelector('#colorPaletteContainer').appendChild(input);
     currentColors.push(e.target.value);
   }
+  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
 });
+
+function selectColor(e) {
+  colorPicker.value = e.target.value;
+  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
+};
 
 const btnColorPicker = document.querySelector('#modeColorPicker');
 btnColorPicker.addEventListener('click', () => {
