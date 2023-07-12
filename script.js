@@ -15,8 +15,22 @@ function createGrid(squaresPerSide) {
   }
 };
 
+// Deactivate dragging
+grid.addEventListener('mousedown', (e) => {
+  e.preventDefault();
+});
+
+let isDrawing = false;
+window.addEventListener('mousedown', () => {
+  isDrawing = true;
+});
+window.addEventListener('mouseup', () => {
+  isDrawing = false;
+});
+
 let currentMode = 'colorPicker';
 function setMode(e) {
+  if (!isDrawing) return;
   switch (currentMode) {
     case 'colorPicker':
       e.target.style.backgroundColor = colorPicker.value;
