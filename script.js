@@ -8,6 +8,7 @@ function createGrid(squaresPerSide) {
     let square = document.createElement('div');
     square.classList.add('square');
     square.style.width = widthOfSquare;
+    square.style.height = widthOfSquare;
     square.style.backgroundColor = '#ffffff';
     square.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
     square.addEventListener('mouseover', setMode);
@@ -105,8 +106,13 @@ for (let color of paletteColors) {
   currentColors.push(color.value);
 };
 
+function selectColor(e) {
+  colorPicker.value = e.target.value;
+  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
+};
+
 colorPicker.addEventListener('change', (e) => {
-  // IF the new color does not exist in the color palette, it is added to the color palette:
+  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
   if (!currentColors.includes(e.target.value)) {
     let input = document.createElement('input');
     input.classList.add('paletteColor');
@@ -117,13 +123,7 @@ colorPicker.addEventListener('change', (e) => {
     document.querySelector('#colorPaletteContainer').appendChild(input);
     currentColors.push(e.target.value);
   }
-  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
 });
-
-function selectColor(e) {
-  colorPicker.value = e.target.value;
-  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
-};
 
 const btnColorPicker = document.querySelector('#modeColorPicker');
 btnColorPicker.addEventListener('click', () => {
