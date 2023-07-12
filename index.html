@@ -9,48 +9,51 @@
 <body>
   <div id="header">Etch a Sketch</div>
   <div id="main">
-    <div id="options">
-      <!-- Color Picker -->
-      <label for="colorPicker">Color Picker</label>
-      <input id="colorPicker" type="color" value="#000000">
-      <div id="colorPaletteContainer">
-        <input class="paletteColor" type="button" value="#000000"></input>
-        <input class="paletteColor" type="button" value="#808080"></input>
-        <input class="paletteColor" type="button" value="#ffffff"></input>
-        <input class="paletteColor" type="button" value="#ff0000"></input>
-        <input class="paletteColor" type="button" value="#ff8000"></input>
-        <input class="paletteColor" type="button" value="#ffff00"></input>
-        <input class="paletteColor" type="button" value="#80ff00"></input>
-        <input class="paletteColor" type="button" value="#00ff00"></input>
-        <input class="paletteColor" type="button" value="#00ff80"></input>
-        <input class="paletteColor" type="button" value="#00ffff"></input>
-        <input class="paletteColor" type="button" value="#0080ff"></input>
-        <input class="paletteColor" type="button" value="#0000ff"></input>
-        <input class="paletteColor" type="button" value="#7f00ff"></input>
-        <input class="paletteColor" type="button" value="#ff00ff"></input>
-        <input class="paletteColor" type="button" value="#ff007f"></input>
+    <div id="menu">
+      <div id="colorPickerContainer">
+        <label for="colorPicker">Color Picker</label>
+        <input id="colorPicker" type="color" value="#000000">
+        <div id="colorPaletteContainer">
+          <input class="paletteColor" type="button" value="#000000"></input>
+          <input class="paletteColor" type="button" value="#808080"></input>
+          <input class="paletteColor" type="button" value="#ffffff"></input>
+          <input class="paletteColor" type="button" value="#ff0000"></input>
+          <input class="paletteColor" type="button" value="#ff8000"></input>
+          <input class="paletteColor" type="button" value="#ffff00"></input>
+          <input class="paletteColor" type="button" value="#80ff00"></input>
+          <input class="paletteColor" type="button" value="#00ff00"></input>
+          <input class="paletteColor" type="button" value="#00ff80"></input>
+          <input class="paletteColor" type="button" value="#00ffff"></input>
+          <input class="paletteColor" type="button" value="#0080ff"></input>
+          <input class="paletteColor" type="button" value="#0000ff"></input>
+          <input class="paletteColor" type="button" value="#7f00ff"></input>
+          <input class="paletteColor" type="button" value="#ff00ff"></input>
+          <input class="paletteColor" type="button" value="#ff007f"></input>
+        </div>
       </div>
-      <!-- Buttons -->
-      <button id="modeColorPicker">Set Color Picker mode</button>
-      <button id="modeRandomColor">Set Random Color mode</button>
-      <button id="modeDarkeningEffect">Set Darkening effect mode</button>
-      <button id="modeBrighteningEffect">Set Brightening Effect mode</button>
-      <button id="eraseGrid">Erase</button>
-      <!-- Grid Size -->
-      <label for="changeGrid">Grid size</label>
-      <input id="changeGrid" type="range" min="1" value="16" list="gridSizeMarkers">
-      <datalist id="gridSizeMarkers">
-        <option value="16"></option>
-        <option value="32"></option>
-        <option value="48"></option>
-        <option value="64"></option>
-        <option value="80"></option>
-      </datalist>
-      <output for="changeGrid">16 x 16</output>
-      <!-- Grid Mesh -->
-      <label for="gridMeshOpacity">Grid mesh opacity</label>
-      <input id="gridMeshOpacity" type="range" value="5">
-      <output for="gridMeshOpacity">0.05</output>
+      <div id="buttonsContainer">
+        <!-- Buttons -->
+        <button id="modeColorPicker">Set Color Picker mode</button>
+        <button id="modeRandomColor">Set Random Color mode</button>
+        <button id="modeDarkeningEffect">Set Darkening effect mode</button>
+        <button id="modeBrighteningEffect">Set Brightening Effect mode</button>
+        <button id="eraseGrid">Erase</button>
+        <!-- Grid Size -->
+        <label for="changeGrid">Grid size</label>
+        <input id="changeGrid" type="range" min="1" value="16" list="gridSizeMarkers">
+        <datalist id="gridSizeMarkers">
+          <option value="16"></option>
+          <option value="32"></option>
+          <option value="48"></option>
+          <option value="64"></option>
+          <option value="80"></option>
+        </datalist>
+        <output for="changeGrid">16 x 16</output>
+        <!-- Grid Mesh -->
+        <label for="gridMeshOpacity">Grid mesh opacity</label>
+        <input id="gridMeshOpacity" type="range" value="5">
+        <output for="gridMeshOpacity">0.05</output>
+      </div>
     </div>
     <div id="grid"></div>
   </div>
