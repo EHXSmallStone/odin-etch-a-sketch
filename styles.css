@@ -78,7 +78,7 @@ body {
   border: none;
   cursor: pointer;
   margin-bottom: 16px;
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.15s ease-in-out;
 }
 #colorPicker::-webkit-color-swatch {
   border: none;
@@ -102,8 +102,7 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 8px;
-  /* max-height: 315px; */
-  max-height: 224px;
+  max-height: 158px;
   overflow-y: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
@@ -137,6 +136,24 @@ button {
   font-weight: inherit;
   min-width: 250px;
   margin-bottom: 1rem;
+  padding: 8px 0;
+  box-shadow: 0 0 2px rgb(0, 0, 0, 0.5);
+  background-color: rgb(239, 239, 239);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+button:hover {
+  transform: scale(1.05);
+  box-shadow: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.currentMode {
+  transform: scale(0.95);
+  box-shadow: none;
+  background-color: rgb(225, 225, 225);
+  border: 1px solid rgba(0, 0, 0);
+  pointer-events: none;
 }
 
 input[type="range"] {

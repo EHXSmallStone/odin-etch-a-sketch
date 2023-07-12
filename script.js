@@ -108,11 +108,11 @@ for (let color of paletteColors) {
 
 function selectColor(e) {
   colorPicker.value = e.target.value;
-  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
+  setColorPickerMode();
 };
 
+colorPicker.addEventListener('click', setColorPickerMode);
 colorPicker.addEventListener('change', (e) => {
-  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
   if (!currentColors.includes(e.target.value)) {
     let input = document.createElement('input');
     input.classList.add('paletteColor');
@@ -125,21 +125,11 @@ colorPicker.addEventListener('change', (e) => {
   }
 });
 
-const btnColorPicker = document.querySelector('#modeColorPicker');
-btnColorPicker.addEventListener('click', () => {
-  if (currentMode !== 'colorPicker') currentMode = 'colorPicker';
-});
-
 function getRandomColor() {
   let getRandomNumber = () => Math.floor(Math.random() * 256);
   let color = `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
   return color;
 };
-
-const btnRandomColor = document.querySelector('#modeRandomColor');
-btnRandomColor.addEventListener('click', () => {
-  if (currentMode !== 'randomColor') currentMode = 'randomColor';
-});
 
 let rgbRegExp = /\d{1,3}/g;
 function getDarkeningEffect(e) {
@@ -153,11 +143,6 @@ function getDarkeningEffect(e) {
   }
 };
 
-const btnDarkeningEffect = document.querySelector('#modeDarkeningEffect');
-btnDarkeningEffect.addEventListener('click', () => {
-  if (currentMode !== 'darkeningEffect') currentMode = 'darkeningEffect';
-});
-
 function getBrighteningEffect(e) {
   let detectedColor = e.target.style.backgroundColor;
   if (detectedColor && detectedColor !== 'rgb(255, 255, 255)') {
@@ -168,16 +153,34 @@ function getBrighteningEffect(e) {
   }
 };
 
-const btnBrighteningEffect = document.querySelector('#modeBrighteningEffect');
-btnBrighteningEffect.addEventListener('click', () => {
-  if (currentMode !== 'brighteningEffect') currentMode = 'brighteningEffect';
-})
-
 const eraseGrid = document.querySelector('#eraseGrid');
 eraseGrid.addEventListener('click', () => {
   for (let square of squares) {
     square.style.backgroundColor = '#ffffff';
   }
 });
+
+const setModeButtons = Array.from(document.querySelectorAll('.setModeButton'));
+setModeButtons.forEach((button) => {
+  button.addEventListener('mousedown', changeMode);
+});
+
+function changeMode(e) {
+  currentMode = e.target.value;
+  e.target.classList.add('currentMode');
+  setModeButtons.filter(button => button.value !== currentMode).
+  forEach(button => button.classList.remove('currentMode'));
+};
+
+const btnColorPicker = setModeButtons[0];
+btnColorPicker.classList.add('currentMode');
+
+function setColorPickerMode() {
+  if (currentMode == 'colorPicker') return;
+  currentMode = 'colorPicker';
+  btnColorPicker.classList.add('currentMode');
+  setModeButtons.filter(button => button.value !== currentMode).
+  forEach(button => button.classList.remove('currentMode'));
+}
 
 createGrid(16);
