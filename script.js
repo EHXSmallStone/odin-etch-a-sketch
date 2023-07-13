@@ -245,3 +245,105 @@ const fillEmptySquares = () => {
 
 import { blueBird32 } from './drawings.js';
 insertDraw(32, blueBird32);
+
+// More brushes -----------------------------------------------------------------------------\\
+
+function setPincelCruz(e) {
+  if (!isDrawing) return;
+
+  let index = Array.from(squares).indexOf(e.target);
+  let topSquare = squares[index - changeGrid.value];
+  let bottomSquare = squares[index + +changeGrid.value];
+  let rightSquare;
+  if (!getIndexOfRightSquares().includes(index)) rightSquare = squares[index + 1];
+  let leftSquare;
+  if (!getIndexOfLeftSquares().includes(index)) leftSquare = squares[index - 1];
+
+  switch (currentMode) {
+    case 'colorPicker':
+      e.target.style.backgroundColor = colorPicker.value;
+      if (topSquare) topSquare.style.backgroundColor = colorPicker.value;
+      if (bottomSquare) bottomSquare.style.backgroundColor = colorPicker.value;
+      if (rightSquare) rightSquare.style.backgroundColor = colorPicker.value;
+      if (leftSquare) leftSquare.style.backgroundColor = colorPicker.value;
+      break;
+
+    case 'randomColor':
+      let randomColor = getRandomColor();
+      e.target.style.backgroundColor = randomColor;
+      if (topSquare) topSquare.style.backgroundColor = randomColor;
+      if (bottomSquare) bottomSquare.style.backgroundColor = randomColor;
+      if (rightSquare) rightSquare.style.backgroundColor = randomColor;
+      if (leftSquare) leftSquare.style.backgroundColor = randomColor;
+      break;
+
+    case 'darkeningEffect':
+      e.target.style.backgroundColor = getDarkeningEffect(e);
+      if (topSquare) topSquare.style.backgroundColor = getDarkeningEffect(e);
+      if (bottomSquare) bottomSquare.style.backgroundColor = getDarkeningEffect(e);
+      if (rightSquare) rightSquare.style.backgroundColor = getDarkeningEffect(e);
+      if (leftSquare) leftSquare.style.backgroundColor = getDarkeningEffect(e);
+      break;
+
+    case 'brighteningEffect':
+      e.target.style.backgroundColor = getBrighteningEffect(e);
+      if (topSquare) topSquare.style.backgroundColor = getBrighteningEffect(e);
+      if (bottomSquare) bottomSquare.style.backgroundColor = getBrighteningEffect(e);
+      if (rightSquare) rightSquare.style.backgroundColor = getBrighteningEffect(e);
+      if (leftSquare) leftSquare.style.backgroundColor = getBrighteningEffect(e);
+      break;
+  }
+};
+
+function highlightCruz(e) {
+  let index = Array.from(squares).indexOf(e.target);
+  e.target.style.border = '1px solid #000';
+
+  let topSquare = squares[index - changeGrid.value];
+  if (topSquare) {
+    topSquare.style.border = '1px solid #000'
+  }
+  
+  let bottomSquare = squares[index + +changeGrid.value];
+  if (bottomSquare) {
+    bottomSquare.style.border = '1px solid #000'
+  }
+
+  let rightSquare;
+  if (!getIndexOfRightSquares().includes(index)) {
+    rightSquare = squares[index + 1];
+    rightSquare.style.border = '1px solid #000'
+  }
+
+  let leftSquare;
+  if (!getIndexOfLeftSquares().includes(index)) {
+    leftSquare = squares[index - 1];
+    leftSquare.style.border = '1px solid #000'
+  }
+
+  e.target.addEventListener('mouseout', (e) => {
+    e.target.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
+    if (topSquare) topSquare.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
+    if (bottomSquare) bottomSquare.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
+    if (rightSquare) rightSquare.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
+    if (leftSquare) leftSquare.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
+  });
+};
+
+function getIndexOfRightSquares() {
+  let multiples = [];
+  for (let i = 1; i <= +changeGrid.value; i++) {
+    let product = (+changeGrid.value * i) - 1;
+    multiples.push(product);
+  }
+  return multiples;
+};
+
+function getIndexOfLeftSquares() {
+  let multiples = [];
+  for (let i = 1; i <= +changeGrid.value; i++) {
+    let product = (+changeGrid.value * i) - +changeGrid.value;
+    multiples.push(product);
+  }
+  return multiples;
+};
