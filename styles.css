@@ -156,6 +156,10 @@ button:hover {
   pointer-events: none;
 }
 
+#eraseGrid:active {
+  background-color: red;
+}
+
 input[type="range"] {
   min-width: 250px;
 }

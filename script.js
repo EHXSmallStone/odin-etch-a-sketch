@@ -155,8 +155,14 @@ function getBrighteningEffect(e) {
 
 const eraseGrid = document.querySelector('#eraseGrid');
 eraseGrid.addEventListener('click', () => {
-  for (let square of squares) {
-    square.style.backgroundColor = '#ffffff';
+  let answer = prompt('Are you sure you want to clean the grid?\n\npress ENTER key to confirm\npress ESC key to cancel', 'y');
+  answer = answer.toLowerCase();
+  if (answer && answer == 'y' || answer == 'yes') {
+    for (let square of squares) {
+      square.style.backgroundColor = '#ffffff';
+    }
+  } else {
+    return;
   }
 });
 
