@@ -151,23 +151,6 @@ function getBrighteningEffect(e) {
   }
 };
 
-const eraseGrid = document.querySelector('#eraseGrid');
-eraseGrid.addEventListener('click', () => {
-  let answer = prompt('Are you sure you want to clean the grid?\n\npress ENTER key to confirm\npress ESC key to cancel', 'y');
-  if (!answer) {
-    return;
-  } else {
-    answer = answer.toLowerCase();
-  }
-  if (answer && answer == 'y' || answer == 'yes') {
-    for (let square of squares) {
-      square.style.backgroundColor = '#ffffff';
-    }
-  } else {
-    return;
-  }
-});
-
 const setModeButtons = Array.from(document.querySelectorAll('.setModeButton'));
 setModeButtons.forEach((button) => {
   button.addEventListener('mousedown', changeMode);
@@ -190,6 +173,46 @@ function setColorPickerMode() {
   setModeButtons.filter(button => button.value !== currentMode).
   forEach(button => button.classList.remove('currentMode'));
 }
+
+const eraseGrid = document.querySelector('#eraseGrid');
+eraseGrid.addEventListener('click', () => {
+  let answer = prompt('Are you sure you want to clean the grid?\n\npress ENTER key to' +
+  ' confirm\npress ESC key to cancel', 'y');
+  if (!answer) {
+    return;
+  } else {
+    answer = answer.toLowerCase();
+  }
+  if (answer && answer == 'y' || answer == 'yes') {
+    for (let square of squares) {
+      square.style.backgroundColor = '#ffffff';
+    }
+  } else {
+    return;
+  }
+});
+
+const paintBucketTool = (color) => {
+  Array.from(squares).
+  filter(square => square.style.backgroundColor == 'rgb(255, 255, 255)').
+  forEach(square => square.style.backgroundColor = color);
+};
+
+const btnPaintBucketTool = document.querySelector('#paintBucketTool');
+btnPaintBucketTool.addEventListener('click', () => {
+  let answer = prompt('This will paint all existing white squares with the color selected in' +
+  ' color picker\n\npress ENTER key to confirm\npress ESC key to cancel', 'y');
+  if (!answer) {
+    return;
+  } else {
+    answer = answer.toLowerCase();
+  }
+  if (answer && answer == 'y' || answer == 'yes') {
+    paintBucketTool(colorPicker.value);
+  } else {
+    return;
+  }
+});
 
 // Insert draws
 
