@@ -192,12 +192,6 @@ eraseGrid.addEventListener('click', () => {
   }
 });
 
-const paintBucketTool = (color) => {
-  Array.from(squares).
-  filter(square => square.style.backgroundColor == 'rgb(255, 255, 255)').
-  forEach(square => square.style.backgroundColor = color);
-};
-
 const btnPaintBucketTool = document.querySelector('#paintBucketTool');
 btnPaintBucketTool.addEventListener('click', () => {
   let answer = prompt('This will paint all existing white squares with the color selected in' +
@@ -214,13 +208,17 @@ btnPaintBucketTool.addEventListener('click', () => {
   }
 });
 
-// Insert draws
-
-const fillEmptySquares = () => {
-  Array.from(squares).
-  filter(square => !square.style.backgroundColor).
-  forEach(square => square.style.backgroundColor = '#fff');
+const paintBucketTool = (color) => {
+  let filtered = Array.from(squares).
+  filter(square => square.style.backgroundColor == 'rgb(255, 255, 255)');
+  if (filtered.length > 0) {
+    filtered.forEach(square => square.style.backgroundColor = color);
+  } else {
+    alert('There is nothing to paint...');
+  }
 };
+
+// Insert draws
 
 const insertDraw = (squaresPerSide, array, index = 0) => {
   let totalSquares = squaresPerSide * squaresPerSide;
@@ -237,6 +235,12 @@ const insertDraw = (squaresPerSide, array, index = 0) => {
     grid.appendChild(square);
   }
   fillEmptySquares();
+};
+
+const fillEmptySquares = () => {
+  Array.from(squares).
+  filter(square => !square.style.backgroundColor).
+  forEach(square => square.style.backgroundColor = '#fff');
 };
 
 import { blueBird32 } from './drawings.js';
