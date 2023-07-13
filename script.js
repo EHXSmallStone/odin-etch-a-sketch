@@ -55,18 +55,16 @@ function setMode(e) {
 function highlightCurrentSquare(e) {
   let rgbValues = e.target.style.backgroundColor.match(rgbRegExp);
   if (rgbValues.filter(value => +value < 100).length > 1) {
-    e.target.style.boxShadow = 'inset 0 0 3px 1px rgb(255, 255, 255, 1)';
-    e.target.style.borderRadius = '10px';
-    grid.style.backgroundColor = '#fff'
+    e.target.style.border = '1px solid #fff';
+    e.target.style.boxShadow = 'inset 0 0 3px #fff';
   } else {
-    e.target.style.boxShadow = 'inset 0 0 3px 1px rgb(0, 0, 0, 0.5)';
-    e.target.style.borderRadius = '10px';
-    grid.style.backgroundColor = '#000'
+    e.target.style.border = '1px solid #000';
+    e.target.style.boxShadow = 'inset 0 0 3px #000';
   }
   e.target.addEventListener('mouseout', (e) => {
-      e.target.style.boxShadow = 'none';
-      e.target.style.borderRadius = '0px';
-    });
+    e.target.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
+    e.target.style.boxShadow = 'none';
+  });
 };
 
 const changeGrid = document.querySelector('#changeGrid');
