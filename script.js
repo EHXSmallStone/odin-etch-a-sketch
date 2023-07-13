@@ -4,7 +4,7 @@ const squares = document.getElementsByClassName('square');
 function createGrid(squaresPerSide) {
   let totalSquares = squaresPerSide * squaresPerSide;
   let widthOfSquare = `${100 / squaresPerSide}%`;
-  for(i = 1; i <= totalSquares; i++) {
+  for(let i = 1; i <= totalSquares; i++) {
     let square = document.createElement('div');
     square.classList.add('square');
     square.style.width = widthOfSquare;
@@ -193,4 +193,30 @@ function setColorPickerMode() {
   forEach(button => button.classList.remove('currentMode'));
 }
 
-createGrid(16);
+// Insert draws
+
+const fillEmptySquares = () => {
+  Array.from(squares).
+  filter(square => !square.style.backgroundColor).
+  forEach(square => square.style.backgroundColor = '#fff');
+};
+
+const insertDraw = (squaresPerSide, array, index = 0) => {
+  let totalSquares = squaresPerSide * squaresPerSide;
+  let widthOfSquare = `${100 / squaresPerSide}%`;
+  for(let i = 1; i <= totalSquares; i++) {
+    let square = document.createElement('div');
+    square.classList.add('square');
+    square.style.width = widthOfSquare;
+    square.style.height = widthOfSquare;
+    square.style.backgroundColor = array[i + index];
+    square.style.border = `1px solid rgba(0, 0, 0, ${gridMeshOpacity.value / 100})`;
+    square.addEventListener('mouseover', setMode);
+    square.addEventListener('mouseover', highlightCurrentSquare);
+    grid.appendChild(square);
+  }
+  fillEmptySquares();
+};
+
+import { blueBird32 } from './drawings.js';
+insertDraw(32, blueBird32);
