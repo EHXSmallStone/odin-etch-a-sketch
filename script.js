@@ -15,6 +15,10 @@ function createGrid(squaresPerSide) {
     square.addEventListener('mouseover', highlightCurrentSquare);
     grid.appendChild(square);
   }
+  if (!showGridSize.textContent) {
+    changeGrid.value = squaresPerSide;
+    showGridSize.textContent = `${squaresPerSide} x ${squaresPerSide}`;
+  }
 };
 
 // Deactivate dragging
@@ -220,14 +224,32 @@ const paintBucketTool = (color) => {
 
 createGrid(32);
 
-const insertDraw = (array) => {
+const insertDraw = (drawingArray, squaresPerSide) => {
   let squaresArray = Array.from(squares);
-  squaresArray.forEach((square, index) => square.style.backgroundColor = array[index]);
-  // Fill empty squares:
-  // squaresArray.filter(square => !square.style.backgroundColor).forEach(square => square.style.backgroundColor = '#fff');
+  if (squaresPerSide == changeGrid.value) {
+    squaresArray.forEach((square, index) => square.style.backgroundColor = drawingArray[index]);
+  } else if (squaresPerSide < changeGrid.value) {
+    let drawingArrayCopy = drawingArray.slice();
+    let difference = changeGrid.value - squaresPerSide;
+    let fillSquares = [];
+    for (let i = 1; i <= difference; i++) {
+      fillSquares.push('rgb(255, 255, 255)');
+    }
+    for (let i = 0; i < squaresPerSide; i++) {
+      drawingArrayCopy.splice((squaresPerSide * (i + 1)) + difference * i, 0, ...fillSquares);
+    }
+    squaresArray.forEach((square, index) => square.style.backgroundColor = drawingArrayCopy[index]);
+  } else if (squaresPerSide > changeGrid.value) {
+    let drawingArrayCopy = drawingArray.slice();
+    let difference = squaresPerSide - changeGrid.value;
+    for (let i = 0; i < changeGrid.value; i++) {
+      drawingArrayCopy.splice(changeGrid.value * (i + 1), difference);
+    }
+    squaresArray.forEach((square, index) => square.style.backgroundColor = drawingArrayCopy[index]);
+  }
 };
 
-const blueBird32 = [
+let drawingSaved = [
   "rgb(255, 255, 255)",
   "rgb(255, 255, 255)",
   "rgb(255, 255, 255)",
@@ -1253,4 +1275,4 @@ const blueBird32 = [
   "rgb(255, 255, 255)",
   "rgb(255, 255, 255)"
 ];
-insertDraw(blueBird32);
+insertDraw(drawingSaved, 32);
