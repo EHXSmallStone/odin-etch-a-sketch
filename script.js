@@ -192,8 +192,9 @@ eraseGrid.addEventListener('click', () => {
   }
   if (answer && answer == 'y' || answer == 'yes') {
     for (let square of squares) {
-      square.style.backgroundColor = '#ffffff';
+      square.style.backgroundColor = 'rgb(255, 255, 255)';
     }
+    drawingSaved.forEach((value, index) => drawingSaved[index] = 'rgb(255, 255, 255)');
   } else {
     return;
   }
@@ -259,7 +260,7 @@ const insertDrawing = (newSizeOfGrid) => {
   }
 };
 
-let drawingSaved = [
+const drawingSaved = [
   "rgb(255, 255, 255)",
   "rgb(255, 255, 255)",
   "rgb(255, 255, 255)",
