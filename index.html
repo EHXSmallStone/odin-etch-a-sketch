@@ -10,8 +10,7 @@
   <div id="header">Etch a Sketch</div>
   <div id="main">
     <div id="menu">
-      <div id="colorPickerContainer">
-        <label for="colorPicker">Color Picker</label>
+      <div id="colorModeContainer">
         <input id="colorPicker" type="color" value="#000000">
         <div id="colorPaletteContainer">
           <input class="paletteColor" type="button" value="#000000"></input>
@@ -32,28 +31,33 @@
         </div>
       </div>
       <div id="buttonsContainer">
-        <!-- Buttons -->
         <button class="setModeButton" value="colorPicker">Set Color Picker mode</button>
         <button class="setModeButton" value="randomColor">Set Random Color mode</button>
         <button class="setModeButton" value="darkeningEffect">Set Darkening effect mode</button>
         <button class="setModeButton" value="brighteningEffect">Set Brightening Effect mode</button>
         <button id="eraseGrid">Erase All</button>
         <button id="paintBucketTool">Paint Bucket Tool</button>
+      </div>
+      <div id="gridSettingsContainer">
         <!-- Grid Size -->
-        <label for="changeGrid">Grid size</label>
-        <input id="changeGrid" type="range" min="1" list="gridSizeMarkers">
-        <datalist id="gridSizeMarkers">
-          <option value="16"></option>
-          <option value="32"></option>
-          <option value="48"></option>
-          <option value="64"></option>
-          <option value="80"></option>
-        </datalist>
-        <output for="changeGrid"></output>
+        <div class="inputRangeContainer">
+          <label for="changeGrid">Grid size</label>
+          <input id="changeGrid" type="range" min="1" list="gridSizeMarkers">
+          <datalist id="gridSizeMarkers">
+            <option value="16"></option>
+            <option value="32"></option>
+            <option value="48"></option>
+            <option value="64"></option>
+            <option value="80"></option>
+          </datalist>
+          <output for="changeGrid"></output>
+        </div>
         <!-- Grid Mesh -->
-        <label for="gridMeshOpacity">Grid mesh opacity</label>
-        <input id="gridMeshOpacity" type="range" value="5">
-        <output for="gridMeshOpacity">0.05</output>
+        <div class="inputRangeContainer">
+          <label for="gridMeshOpacity">Grid mesh opacity</label>
+          <input id="gridMeshOpacity" type="range" value="5">
+          <output for="gridMeshOpacity">0.05</output>
+        </div>
       </div>
     </div>
     <div id="grid"></div>
