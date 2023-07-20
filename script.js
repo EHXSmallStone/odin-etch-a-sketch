@@ -116,7 +116,6 @@ function selectColor(e) {
   setColorPickerMode();
 };
 
-colorPicker.addEventListener('click', setColorPickerMode);
 colorPicker.addEventListener('change', (e) => {
   if (!currentColors.includes(e.target.value)) {
     let input = document.createElement('input');
@@ -128,6 +127,7 @@ colorPicker.addEventListener('change', (e) => {
     document.querySelector('#colorPaletteContainer').appendChild(input);
     currentColors.push(e.target.value);
   }
+  setColorPickerMode();
 });
 
 function getRandomColor() {
