@@ -293,16 +293,19 @@ a:hover {
   grid-auto-rows: 25px;
   gap: 8px;
   max-height: 125px;
-  overflow-y: auto;
+  overflow: clip auto;
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
+
 #colorPaletteContainer::-webkit-scrollbar {
   width: 5px;
-  background: rgb(200, 200, 200);
 }
 #colorPaletteContainer::-webkit-scrollbar-thumb {
   background: rgb(100, 100, 100);
+}
+#colorPaletteContainer::-webkit-scrollbar-track {
+  background: rgb(200, 200, 200);
 }
 
 .paletteColor {

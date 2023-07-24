@@ -102,6 +102,7 @@ gridMeshOpacity.addEventListener('input', (e) => {
 });
 
 const colorPicker = document.querySelector('#colorPicker');
+const colorPaletteContainer = document.querySelector('#colorPaletteContainer');
 const paletteColors = document.querySelectorAll('.paletteColor');
 const currentColors = [];
 // Add background colors and events to default colors:
@@ -124,7 +125,11 @@ colorPicker.addEventListener('change', (e) => {
     input.value = e.target.value;
     input.style.backgroundColor = e.target.value;
     input.addEventListener('click', selectColor);
-    document.querySelector('#colorPaletteContainer').appendChild(input);
+    colorPaletteContainer.appendChild(input);
+    colorPaletteContainer.scrollTo({
+      top: colorPaletteContainer.scrollHeight,
+      behavior: "smooth",
+    });
     currentColors.push(e.target.value);
   }
   setColorPickerMode();
